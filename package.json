@@ -1,16 +1,24 @@
 {
   "name": "chatbot",
   "version": "1.0.0",
-  "description": "Realtime chat app with friends",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FeirieO/ChatBot.git"
+  },
   "author": "Feirie",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FeirieO/ChatBot/issues"
+  },
+  "homepage": "https://github.com/FeirieO/ChatBot#readme",
   "dependencies": {
     "express": "^4.17.1",
     "moment": "^2.29.1",
-    "socker.io": "0.0.0-alpha-beta"
+    "socket.io": "^4.1.3"
   }
 }
