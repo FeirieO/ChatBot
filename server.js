@@ -16,19 +16,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 io.on('connection', socket => {
     console.log('Web Server Connection');
 
-    socket.emit('message', 'Welcome to ChatBot 👋!');
+    socket.emit('message', formatMessage(botName,'Welcome to ChatBot 👋!'));
 
     //Broadcast when a user connects
-    socket.broadcast.emit('message', 'A user has joined the chat');
+    socket.broadcast.emit('message', formatMessage(botName,'A user has joined the chat'));
 
     //Runs when clients disconnects
     socket.on('disconnect', () => {
-        io.emit('message', 'A user has left the chat');
+        io.emit('message', formatMessage(botName, 'A user has left the chat'));
     })
 
-    //listen for roomMessage
+    //listen for chatMessage
     socket.on('chatMessage', (message) => {
-        io.emit('message', message);
+        io.emit('message', formatMessage('USER', message));
     });
 
 });
