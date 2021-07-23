@@ -3,8 +3,6 @@ const http = require('http');
 const path = require('path');
 const socketio = require('socket.io');
 
-
-
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -16,21 +14,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 io.on('connection', socket => {
     console.log('Web Server Connection');
 
-    socket.emit('message', formatMessage(botName,'Welcome to ChatBot 👋!'));
+    socket.emit('message', 'Welcome to Chat!');
 
-    //Broadcast when a user connects
-    socket.broadcast.emit('message', formatMessage(botName,'A user has joined the chat'));
+//Broadcast when a user connects
+socket.broadcast.emit('message', 'A user has joined the chat');
+});
 
-    //Runs when clients disconnects
-    socket.on('disconnect', () => {
-        io.emit('message', formatMessage(botName, 'A user has left the chat'));
-    })
-
-    //listen for chatMessage
-    socket.on('chatMessage', (message) => {
-        io.emit('message', formatMessage('USER', message));
-    });
-
+//Runs when client disconnects
+socket.on('disconnect', () => {
+    io.emit('message', 'A user has left the chat');
 });
 
 const PORT = 3400 || process.env.PORT;
